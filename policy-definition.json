@@ -1,0 +1,104 @@
+{
+  "properties": {
+    "displayName": "Deny VNet with address space in 172.16.0.0/16 range",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "Blocks the creation of Virtual Networks with address spaces that fall within or overlap the 172.16.0.0/16 range.",
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "The effect of the policy"
+        },
+        "allowedValues": [
+          "Deny",
+          "Audit",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/virtualNetworks"
+          },
+          {
+            "anyOf": [
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.16.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.17.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.18.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.19.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.20.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.21.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.22.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.23.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.24.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.25.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.26.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.27.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.28.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.29.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.30.*"
+              },
+              {
+                "field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]",
+                "like": "172.31.*"
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]"
+      }
+    }
+  }
+}
